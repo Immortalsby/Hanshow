@@ -1,0 +1,662 @@
+#set ($police="Arial")
+## PRIX TAILLE REDUITE
+#if ( ($pointsfidelite != 0 && $pointsfidelite != "" ) || $champlibre != "" || $prixconverti != "" || $isqrcode == 1)
+	#set($reduire_prix = true)
+	#else
+	#set($reduire_prix = false)
+#end
+{
+"template": "NORMALHDBWR",
+"block_num": 1,
+"direction": $rotation,
+"encoding": "UTF-8",
+"overlap_rule": "order_wise",
+"screen_block": [
+
+	## LIBELLE
+	{
+	"block_name": "libelle_produit",
+"start_x": 0,
+"start_y": 0,
+"end_x": 198,
+"end_y": 52,
+	#if ( $libelle.length() >= 32 )
+"font_type": "$police Bold 12",
+		"line_spacing": -3,
+		#elseif ( $libelle.length() > 28 )
+"font_type": "$police Bold 13",
+		"line_spacing": -3,
+		#elseif ( $libelle.length() > 20 )
+"font_type": "$police Bold 14",
+		"line_spacing": -3,
+		#elseif ( $libelle.length() > 10 )
+"font_type": "$police Bold 17",
+		"line_spacing": -3,
+		#elseif ( $libelle.length() <= 10 )
+"font_type": "$police Bold 18",
+		"line_spacing": -2,
+	#end
+	"content_type": "CONTENT_TYPE_TEXT",
+	"content_title": "libelle",
+	#if ( $libellefond == "pink" )
+		"content_color": "RED",
+		#elseif ( $libellefond == "white" )
+		"content_color": "BLACK",
+		"content_background_color": "WHITE",
+		#elseif ( $libellefond == "red" )
+		"content_color": "RED",
+		"content_reverse": 1,
+		#elseif ( $libellefond == "black" )
+		"content_color": "BLACK",
+		"content_reverse": 1,
+	#end
+	"content_alignment": "CENTER",
+	"content_vertical_alignment": "MIDDLE",
+	"auto_wrap": 1
+	},
+	
+	## VOLUME
+	{
+	"block_name": "volume",
+"start_x": 92,
+"start_y": 53,
+"end_x": 197,
+"end_y": 68,
+"font_type": "$police 11",
+	"content_type": "CONTENT_TYPE_TEXT",
+	"content_title": "volume",	
+	"content_color": "BLACK",
+	"content_alignment": "RIGHT",
+	"content_vertical_alignment": "MIDDLE",
+	"content_reverse": 0,
+	"border": 0
+	},
+	
+	## MODE PROMO
+	#if ( $prixnormal != "" || $logopromo != "" || $remise != "" )
+		{
+		## PRIX BARRE
+		"block_name": "prix_barre",
+"start_x": 118,
+"start_y": 72,
+"end_x": 197,
+"end_y": 92,
+		"content_type": "CONTENT_TYPE_TEXT",
+		"content_title": "prixnormal",
+		"text_decoration": "strikethrough",
+		"text_decoration_script": "strikethrough",
+"font_type": "$police Bold 13",
+		"content_color": "BLACK",
+		"content_alignment": "RIGHT",
+		"content_vertical_alignment": "MIDDLE",
+		"background_transparent": true,
+		"content_reverse": 0
+		},
+		## LOGO PROMO OU REMISE DANS CERCLE
+		#if ($remise != "")
+			## SANS LOGO
+			{
+			"block_name": "rondrouge",
+"start_x": 0,
+"start_y": 78,
+"end_x": 78,
+"end_y": 157,
+			"content_title": "NONE",
+			"content_type": "CONTENT_TYPE_IMAGE",
+			"content_value": "Qk36MQAAAAAAADYAAAAoAAAAQQAAAEEAAAABABgAAAAAAMQxAADDDgAAww4AAAAAAAAAAAAA/////////////////////////////////////////////////////////////////////////////////////////////////f3/x8f/ior/cXH/Wlr/Q0P/Li7/Fxf/FRX/Fxf/Li7/Q0P/Wlr/cXH/ior/x8f//f3/////////////////////////////////////////////////////////////////////////////////////////////////AP///////////////////////////////////////////////////////////////////////////////////9nZ/5SU/1BQ/xAQ/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/xAQ/1BQ/5SU/9nZ/////////////////////////////////////////////////////////////////////////////////////wD////////////////////////////////////////////////////////////////////////9/f+wsP85Of8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP85Of+wsP/9/f////////////////////////////////////////////////////////////////////////8A////////////////////////////////////////////////////////////////+Pj/mZn/Jyf/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Jyf/mZn/+Pj/////////////////////////////////////////////////////////////////AP///////////////////////////////////////////////////////////6am/xcX/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/xcX/6am/////////////////////////////////////////////////////////////wD////////////////////////////////////////////////////w8P9aWv8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP9aWv/w8P////////////////////////////////////////////////////8A////////////////////////////////////////////////wsL/Hx//AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Hx//wsL/////////////////////////////////////////////////AP///////////////////////////////////////////4OD/wMD/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wMD/4OD/////////////////////////////////////////////wD///////////////////////////////////////92dv8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP92dv////////////////////////////////////////8A////////////////////////////////////dnb/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/dnb/////////////////////////////////////AP///////////////////////////////3Z2/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/3Z2/////////////////////////////////wD///////////////////////////+AgP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP+AgP////////////////////////////8A////////////////////////wMD/AwP/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AwP/wMD/////////////////////////AP////////////////////Dw/x8f/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/x8f//Dw/////////////////////wD///////////////////9XV/8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP9XV/////////////////////8A////////////////pKT/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/pKT/////////////////AP////////////X1/xUV/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/xUV//X1/////////////wD///////////+UlP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP+UlP////////////8A/////////f3/JCT/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/JCT//f3/////////AP///////6mp/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/6mp/////////wD///////82Nv8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP82Nv////////8A////z8//AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/z8//////AP///42N/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/42N/////wD///9ISP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP9ISP////8A+vr/Cwv/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Cwv/+vr/AMLC/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/8LC/wCIiP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP+IiP8AbGz/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/bGz/AFdX/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/1dX/wBDQ/8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP9DQ/8AMTH/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/MTH/AB0d/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/x0d/wAICP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8ICP8ADQ3/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/DQ3/ACQk/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/yQk/wA7O/8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP87O/8AUFD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/UFD/AGZm/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/2Zm/wCFhf8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP+Fhf8AwsL/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/wsL/APr6/wsL/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wsL//r6/wD///9ISP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP9ISP////8A////jY3/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/jY3/////AP///8/P/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/8/P/////wD///////82Nv8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP82Nv////////8A////////qan/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/qan/////////AP////////39/yQk/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/yQk//39/////////wD///////////+UlP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP+UlP////////////8A////////////9fX/FRX/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/FRX/9fX/////////////AP///////////////6Sk/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/6Sk/////////////////wD///////////////////9XV/8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP9XV/////////////////////8A////////////////////8PD/Hx//AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Hx//8PD/////////////////////AP///////////////////////8DA/wMD/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wMD/8DA/////////////////////////wD///////////////////////////+AgP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP+AgP////////////////////////////8A////////////////////////////////dnb/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/dnb/////////////////////////////////AP///////////////////////////////////3Z2/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/3Z2/////////////////////////////////////wD///////////////////////////////////////92dv8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP92dv////////////////////////////////////////8A////////////////////////////////////////////g4P/AwP/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AwP/g4P/////////////////////////////////////////////AP///////////////////////////////////////////////8LC/x8f/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/x8f/8LC/////////////////////////////////////////////////wD////////////////////////////////////////////////////w8P9aWv8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP9aWv/w8P////////////////////////////////////////////////////8A////////////////////////////////////////////////////////////pqb/Fxf/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Fxf/pqb/////////////////////////////////////////////////////////////AP////////////////////////////////////////////////////////////////j4/5mZ/ycn/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/wAA/ycn/5mZ//j4/////////////////////////////////////////////////////////////////wD////////////////////////////////////////////////////////////////////////9/f+wsP85Of8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP85Of+wsP/9/f////////////////////////////////////////////////////////////////////////8A////////////////////////////////////////////////////////////////////////////////////2dn/lJT/UFD/EBD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/EBD/UFD/lJT/2dn/////////////////////////////////////////////////////////////////////////////////////AP////////////////////////////////////////////////////////////////////////////////////////////////39/8fH/4qK/3Fx/1pa/0ND/y4u/xcX/xUV/xcX/y4u/0ND/1pa/3Fx/4qK/8fH//39/////////////////////////////////////////////////////////////////////////////////////////////////wA=",
+			"auto_scale": 1,
+			"content_reverse": 0,
+			"background_transparent": true
+			},
+			{
+			## REMISE
+			"block_name": "remise",
+"start_x": 0,
+"start_y": 78,
+"end_x": 78,
+"end_y": 157,
+"font_type": "$police Bold 18",
+			"content_type": "CONTENT_TYPE_TEXT",
+			"content_title": "remise",
+			"content_color": "BLACK",
+			"content_alignment": "CENTER",
+			"content_vertical_alignment": "MIDDLE",
+			"content_reverse": 1,
+			"background_transparent": true
+			},
+			#else
+			{
+			## AVEC LOGO PROMO
+			"block_name": "logo_promo",
+"start_x": 0,
+"start_y": 78,
+"end_x": 89,
+"end_y": 151,
+			"content_type": "CONTENT_TYPE_BMP_FILE",
+			"content_title": "logopromo",
+			"auto_scale": 1,
+			"content_reverse": 0,
+			"background_transparent": true
+			},
+			#end
+		#else
+		## LOGO MODE NORMAL
+		{
+		"block_name": "logo",
+"start_x": 0,
+"start_y": 72,
+"end_x": 105,
+"end_y": 151,
+		"content_type": "CONTENT_TYPE_BMP_FILE",
+		"content_title": "logo",
+		"auto_scale": 1
+		},
+	#end
+	
+	## PRIX
+	{
+	"block_name": "prix",
+	"content_type": "CONTENT_TYPE_CURRENCY",
+	"fraction_digits": 2,
+	"decimal_separator": "",
+	"content_title": "fprixdevente",
+	## MODE NORMAL SANS LOGO
+	#if ($prixnormal == "" && $logopromo == "" && $remise == "" && $logo == "")
+		#if ( $fprixdevente < 100 )
+"start_x": 0,
+"start_y": 39,
+"end_x": 197,
+"end_y": 184,
+			## REDUIT TAILLE POUR FIDELITE/CHAMP LIBRE
+			#if ( $reduire_prix == true )
+"font_type": "$police Bold 52",
+				"font_type_script": "$police Bold 24"
+				#else
+"font_type": "$police Bold 66",
+				"font_type_script": "$police Bold 30"
+			#end
+		#else
+"start_x": 0,
+"start_y": 65,
+"end_x": 197,
+"end_y": 171,
+"font_type": "$police Bold 46",
+			"font_type_script": "$police Bold 24"
+		#end
+		,"content_color": "BLACK",
+
+	## MODE PROMO SANS LOGO OU NORMAL AVEC LOGO
+	#else
+		#if ( $fprixdevente < 10 )
+"start_x": 78,
+"end_x": 198,
+"end_y": 171,
+"font_type": "$police Bold 46",
+			"font_type_script": "$police Bold 20",
+		#elseif ( $fprixdevente < 100 )
+"start_x": 85,
+"end_x": 198,
+"end_y": 184,
+"font_type": "$police Bold 39",
+			"font_type_script": "$police Bold 16",
+		#else
+"start_x": 76,
+"end_x": 198,
+"end_y": 184,
+"font_type": "$police Bold 30",
+			"font_type_script": "$police Bold 12",
+		#end
+		## PRIX PLUS PETIT
+		#if ( $reduire_prix == true )
+"start_y": 52,
+			#else
+"start_y": 78,
+		#end
+		,
+		#if ( $logo == "" )
+			"content_color": "RED",
+			#else
+			"content_color": "BLACK",
+		#end
+	#end
+	## PRIX EN ROUGE
+	#if ( $prixenrouge == 1 )
+		"content_color": "RED",
+	#end
+	"number_script": "SUB",	
+	"content_alignment": "RIGHT",
+	"content_vertical_alignment": "MIDDLE",
+	"background_transparent": true,
+	"content_reverse": 0
+	},
+
+	## SYMBOLE EURO
+	{
+	"block_name": "symbole_euro",
+	#if ( $prixenrouge == 1 )
+		"content_color": "RED",
+		#else
+		"content_color": "BLACK",
+	#end
+	#if( $prixnormal == "" && $logopromo == "" && $remise == "" && $logo == "" )
+		#if ( $reduire_prix == true )
+"start_x": 151,
+"start_y": 72,
+			#else
+"start_x": 144,
+"start_y": 72,
+		#end
+"end_x": 178,
+"end_y": 110,
+"font_type": "$police Bold 20",
+		#else
+		#if ( $reduire_prix == true )
+"start_x": 169,
+"start_y": 78,
+"font_type": "$police Bold 18",
+			#else
+			#if ( $prixdevente_euro >= 100 )
+"start_x": 175,
+"start_y": 105,
+"font_type": "$police Bold 14",
+				#else
+"start_x": 168,
+"start_y": 97,
+"font_type": "$police Bold 17",
+			#end
+		#end
+"end_x": 190,
+"end_y": 123,
+		#if ( $logo == "" )
+			"content_color": "RED",
+		#end
+	#end
+	"content_type": "CONTENT_TYPE_TEXT",
+	"content_title": "NONE",
+	"content_value": "€",
+	"content_alignment": "LEFT",
+	"content_vertical_alignment": "MIDDLE",
+	"background_transparent": true,
+	"content_reverse": 0
+	},
+
+	## DATAMATRIX
+	#if ( $isqrcode == 1 && $prixnormal == "" && $remise == "" && $logo == "" && $fprixdevente < 100 )
+		{
+		"block_name": "qrcode",
+"start_x": 0,
+"start_y": 98,
+"end_x": 59,
+"end_y": 157,
+		"content_type": "CONTENT_TYPE_QRCODE",
+		#if ( $ean == "" )
+			"content_title": "cip"
+			#else
+			"content_title": "ean"
+		#end,
+		"content_color": "BLACK", 
+		"auto_scale": 1
+		},
+	#end
+	
+	## POINTS FID
+	#if ( $pointsfidelite != 0 && $pointsfidelite != "" )
+		{
+		"block_name": "points_fid",
+"start_x": 109,
+"start_y": 160,
+"end_x": 197,
+"end_y": 176,
+"font_type": "$police 10",
+		"corner_width": 2,
+		"corner_height": 2,
+		"content_type": "CONTENT_TYPE_TEXT",
+		#if ( $pointsfidelite == -1 )
+			"content_value": "Fidélité",
+			#else
+			"content_value": "Fidélité : $pointsfidelite",
+		#end
+		"auto_narrow_width": 1,
+		"auto_wrap": 0,
+		"content_color": "RED",
+		"content_alignment": "CENTER",
+		"content_vertical_alignment": "MIDDLE",
+		"content_reverse": 1
+		},
+	#end
+	
+	## PRIX CONVERTI (SI PAS POINTS FID)
+	#if ( $prixconverti != "" && ($pointsfidelite == 0 || $pointsfidelite == "") )
+		{
+		"block_name": "prix_converti",
+"start_x": 126,
+"start_y": 160,
+"end_x": 198,
+"end_y": 175,
+"font_type": "$police 11",
+		"corner_width": 2,
+		"corner_height": 2,
+		"content_type": "CONTENT_TYPE_TEXT",
+		"content_title": "prixconverti",
+		"auto_narrow_width": 1,
+		"auto_wrap": 0,
+		"content_color": "BLACK",
+		"content_alignment": "LEFT",
+		"content_vertical_alignment": "MIDDLE",
+		"content_reverse": 0
+		},
+		## LOGO AVION
+		#if ( $prixconvertiht == 1 )
+			{
+			"block_name": "avion",
+"start_x": 100,
+"start_y": 157,
+"end_x": 126,
+"end_y": 176,
+			"content_title": "NONE",
+			"content_type":"CONTENT_TYPE_IMAGE",
+			"content_value":"Qk14OAAAAAAAADYAAAAoAAAAUAAAADwAAAABABgAAAAAAEI4AAASCwAAEgsAAAAAAAAAAAAA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////zs7/rKz//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////f3//////////////////////////////////////////////////////////////////////////////////////////////////f3/Njb/ODj/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////jo7/fX3/////////////////////////////////////////////////////////////////////////////////////////////////lZX/AAD/AAD/x8f//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////f3/b2//AAD/FBT/9vb/////////////////////////////////////////////////////////////////////////////////////////6Oj/EBD/AAD/AAD/UVH/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/f/VVX/AAD/AAD/AAD/mpr/////////////////////////////////////////////////////////////////////////////////////////W1v/AAD/AAD/AAD/AgL/29v/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ior/AAD/AAD/AAD/AAD/Kir//v7/////////////////////////////////////////////////////////////////////////////////vLz/AAD/AAD/AAD/AAD/AAD/bW3/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////o6P/AAD/AAD/AAD/AAD/AAD/uLj/////////////////////////////////////////////////////////////////////////////////Q0P/AAD/AAD/AAD/AAD/AAD/DAz/7+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////w8P/AAD/AAD/AAD/AAD/AAD/R0f/////////////////////////////////////////////////////////////////////////////////eHj/AAD/AAD/AAD/AAD/AAD/AAD/i4v/////////////////9/f/8/P/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////4+P/AAD/AAD/AAD/AAD/AAD/AQH/1dX/////////////////////////////////////////////////////////////////////////////w8P/AAD/AAD/AAD/AAD/AAD/AAD/Hh7/+/v//////f3/fn7/CQn/YGD//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////f3/Bgb/AAD/AAD/AAD/AAD/AAD/ZWX//////////////////////////////////////////////////////////////////////////////Pz/EhL/AAD/AAD/AAD/AAD/AAD/AAD/qan//f3/YmL/AAD/AgL/v7//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////JCT/AAD/AAD/AAD/AAD/AAD/CQn/6+v/////////////////////////////////////////////////////////////////////////////Wlr/AAD/AAD/AAD/AAD/AAD/AAD/MzP/Zmb/AAD/AAD/fX3/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////RUX/AAD/AAD/AAD/AAD/AAD/AAD/g4P/////////////////////////////////////////////////////////////////////////////paX/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/aWn/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ZWX/AAD/AAD/AAD/AAD/AAD/AAD/GRn/+fn/////////////////////////////////////////////////////////////////////////7e3/AwP/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Fhb/x8f//Pz/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////hob/AAD/AAD/AAD/AAD/AAD/AAD/AAD/oaH/////////////////////////////////////////////////////////////////////////////Pj7/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/EhL/VVX/mpr/39//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////p6f/AAD/AAD/AAD/AAD/AAD/AAD/AAD/MTH/////////////////////////////////////////////////////////////////////////////jIz/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/JSX/a2v/sLD/8PD/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////x8f/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/v7//////////////////////////////////////////////////////////////////////////d3f/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/BAT/Ozv/kJD/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////5+f/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/T0//////////////////////////////////////////////////////////////////////kpL/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AwP/tbX/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////CQn/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AgL/19f/////////////////////////////////////////////////////////////pKT/AQH/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/iYn/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////KSn/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/ZWX/////////////////////////////////////////////////////////sbH/AwP/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/WVn//v7/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////SUn/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/CQn/6+v/////////////////////////////////////////////////vb3/Cgr/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/MzP/9fX/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////aWn/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/g4P/////////////////////////////////////////////y8v/Dw//AAD/AAD/AAD/AAD/AAD/AAD/Kyv/09P/0dH/w8P/tLT/paX/l5f/iIj/d3f/aGj/Wlr/S0v/Q0P/4+P/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////iYn/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/GRn/+fn/////////////////////////////////////2Nj/FRX/AAD/AAD/AAD/AAD/AAD/AAD/Hx//4+P/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////q6v/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/oaH/////////////////////////////////4+P/HBz/AAD/AAD/AAD/AAD/AAD/AAD/FRX/29v/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////zMz/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/MTH/////////////////////////////6ur/JSX/AAD/AAD/AAD/AAD/AAD/AAD/Dw//0dH/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7Oz/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/v7//////////////////////8PD/MjL/AAD/AAD/AAD/AAD/AAD/AAD/Cgr/w8P/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////DQ3/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/T0//////////////////9fX/QED/AAD/AAD/AAD/AAD/AAD/AAD/Bgb/tLT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////LS3/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AgL/29v/////////+vr/Tk7/AAD/AAD/AAD/AAD/AAD/AAD/AwP/pKT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////TU3/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/bW3//////v7/W1v/AAD/AAD/AAD/AAD/AAD/AAD/AAD/lpb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////bW3/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/DAz/7+//a2v/AAD/AAD/AAD/AAD/AAD/AAD/AAD/hIT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////jo7/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/MjL/AAD/AAD/AAD/AAD/AAD/AAD/AAD/cXH/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////sLD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/X1///v7/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////0ND/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Tk7//Pz/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8PD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/QkL/+fn/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ERH/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/ERH/1dX/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////MTH/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AQH/Nzf/iIj/2tr/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////UVH/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/LCz/fn7/zs7/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////cnL/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/IiL/cnL/xcX//f3/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////kpL/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/GBj/aGj/ubn/+vr/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tLT/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/ERH/XFz/r6//9fX/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1NT/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Cgr/U1P/o6P/7+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9PT/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Bgb/R0f/mZn/6Oj/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////FRX/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AgL/PT3/jY3/39//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////xcX/Bgb/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/MjL/mpr/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////3Nz/FRX/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/MTH/4uL/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8PD/LS3/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/VVX/9PT//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Pz/SEj/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AQH/gID//v7/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////a2v/AAD/AAD/AAD/AAD/AAD/AAD/AAD/FBT/oKD/qKj/mZn/mJj/iIj/iIj/d3f/d3f/Z2f/Zmb/Vlb/VVX/Rkb/RET/Njb/MzP/Jib/IiL/Fhb/ERH/Bgb/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/Cwv/rKz/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////lpb/AAD/AAD/AAD/AAD/AAD/AAD/AAD/ERH/zs7/////////////////////////////////////////////////////////////////////////////////////////9fX/7u7/5OT/3d3/1NT/zMz/xMT/u7v/tLT/qqr/pKT/09P/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wsL/BQX/AAD/AAD/AAD/AAD/AAD/AAD/ERH/zMz/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////4+P/Fxf/AAD/AAD/AAD/AAD/AAD/AAD/ExP/zs7/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+fn/OTn/AAD/AAD/AAD/AAD/AAD/AAD/FBT/z8//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Z2f/AAD/AAD/AAD/AAD/AAD/AAD/Fhb/0ND/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oaH/AAD/AAD/AAD/AAD/AAD/AAD/HBz/19f/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////29v/DAz/AAD/AAD/AAD/AAD/AAD/IiL/3t7//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v7/Ojr/AAD/AAD/AAD/AAD/AAD/MzP/5+f/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////qKj/AAD/AAD/AAD/AAD/AAD/Rkb/8vL/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////QkL/AAD/AAD/AAD/AAD/bm7//Pz/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////DAz/AAD/AAD/ERH/pKT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Njb/FBT/cHD/5ub/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////AAA=",
+			"auto_scale": 1,
+			"content_reverse": 0,
+			"background_transparent": true
+			},
+		#end
+	#end
+	
+	## CHAMP LIBRE (SI PAS CONVERSION PRIX NI POINTS FID)
+	#if ( $champlibre != "" && ($pointsfidelite == 0 || $pointsfidelite == "") && $prixconverti == "" )
+		{
+		"block_name": "champ_libre",
+"start_x": 109,
+"start_y": 160,
+"end_x": 197,
+"end_y": 175,
+"font_type": "$police 10",
+		"corner_width": 2,
+		"corner_height": 2,
+		"content_type": "CONTENT_TYPE_TEXT",
+		"content_title": "champlibre",
+		"auto_narrow_width": 1,
+		"auto_wrap": 0,
+		"content_color": "BLACK",
+		"content_alignment": "RIGHT",
+		"content_vertical_alignment": "MIDDLE",
+		"content_reverse": 1
+		},
+	#end
+
+	## CIP EAN
+	{
+	"block_name": "cip_ean",
+"start_x": 2,
+	#if ( $colorcadre != "white" )
+"start_y": 160,
+"end_y": 177,
+		#else
+"start_y": 173,
+"end_y": 196,
+	#end
+"end_x": 105,
+"font_type": "$police 10",
+	"content_type": "CONTENT_TYPE_TEXT",
+	#if ( $ean == "" )
+		"content_title": "cip"
+		#else
+		"content_title": "ean"
+	#end,
+	"auto_narrow_width": 1,
+	"auto_wrap": 0,
+	"content_color": "BLACK",
+	"content_alignment": "LEFT",
+	"content_vertical_alignment": "MIDDLE",
+	"content_reverse": 0
+	},
+	
+	## PRIX AU LITRE OU AU KILO
+	{
+	"block_name": "prix_volume",		
+"start_x": 105,
+	#if ( $reduire_prix == true )
+"start_y": 144,
+"end_y": 157,
+		#else
+"start_y": 160,
+"end_y": 177,
+	#end
+"end_x": 197,
+	#if ( $colorcadre == "white" )
+"start_y": 175,
+"end_y": 190,
+	#end
+"font_type": "$police 10",
+	"content_type": "CONTENT_TYPE_TEXT",
+	"content_title": "prixvolume",
+	"content_color": "BLACK",
+	"content_alignment": "RIGHT",
+	"content_vertical_alignment": "MIDDLE",
+	"content_reverse": 0
+	},
+	
+	## 3 ZONES SI PAS PREMIUM
+	#if ( $colorcadre != "white" )
+	{
+	"block_name": "zone_1",
+"start_x": 0,
+"start_y": 177,
+"end_x": 46,
+"end_y": 198,
+	#if ( $zone1.length()< 5 )
+"font_type": "$police Bold 11",
+		#else
+"font_type": "$police Bold 10",
+	#end
+	"content_type": "CONTENT_TYPE_TEXT",
+	"content_title": "zone1",
+	"border": 1,
+	"auto_wrap": 0,
+	"content_color": "BLACK",
+	"content_alignment": "CENTER",
+	"content_vertical_alignment": "MIDDLE",
+	"background_transparent": true,
+	"content_reverse": 0	
+	},
+	{
+	"block_name": "zone_2",
+"start_x": 48,
+"start_y": 177,
+"end_x": 94,
+"end_y": 198,
+"font_type": "$police 11",
+	"content_type": "CONTENT_TYPE_TEXT",
+	"content_title": "zone2",
+	"border": 1,
+	"auto_wrap": 0,
+	"content_color": "BLACK",
+	"content_alignment": "CENTER",
+	"content_vertical_alignment": "MIDDLE",
+	"background_transparent": true,
+	"content_reverse": 0
+	},
+	{
+	"block_name": "zone_3",
+"start_x": 97,
+"start_y": 177,
+"end_x": 147,
+"end_y": 198,
+"font_type": "$police 11",
+	"content_type": "CONTENT_TYPE_TEXT",
+	"content_title": "zone3",
+	"border": 1,
+	"auto_wrap": 0,
+	"content_color": "BLACK",
+	"content_alignment": "CENTER",
+	"content_vertical_alignment": "MIDDLE",
+	"background_transparent": true,
+	"content_reverse": 0
+	},
+	
+	## PICTOS SI PAS GROUPE
+	#if ( $isgroupe != 1 )
+		{
+		"block_name": "cadre_picto",
+"start_x": 150,
+"start_y": 177,
+"end_x": 198,
+"end_y": 198,
+"font_type": "$police 11",
+		"content_type": "CONTENT_TYPE_TEXT",
+		"content_value": " ",
+		"border": 1,
+		"auto_wrap": 0,
+		"content_color": "BLACK",
+		"content_alignment": "CENTER",
+		"content_vertical_alignment": "MIDDLE",
+		"background_transparent": true,
+		"content_reverse": 0
+		},
+		#if ( $iscarre == 1 )
+			{
+			"block_name": "carre",
+"start_x": 152,
+"start_y": 182,
+"end_x": 161,
+"end_y": 192,
+			"content_type": "CONTENT_TYPE_BMP_FILE",
+			"content_value": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsSAAALEgHS3X78AAAAEUlEQVR42mNgYGD4TwCPBAUAgkg/wZV0VGcAAAAASUVORK5CYII="
+			},
+		#end
+		#if ( $isrond == 1 )
+			{
+			"block_name": "rond",
+"start_x": 164,
+"start_y": 181,
+"end_x": 176,
+"end_y": 193,
+			"content_type": "CONTENT_TYPE_BMP_FILE",
+			"content_value": "iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAACXBIWXMAAAsSAAALEgHS3X78AAAAJElEQVR42mP4jwQYGBjgGEUcXRIdE68InwIkTC1F1HM4MeEEAARJjHQAkwsLAAAAAElFTkSuQmCC"
+			},
+		#end
+		#if ( $istriangle == 1 )
+			{
+			"block_name": "triangle",
+"start_x": 176,
+"start_y": 181,
+"end_x": 188,
+"end_y": 193,
+			"content_type": "CONTENT_TYPE_BMP_FILE",
+			"content_value": "iVBORw0KGgoAAAANSUhEUgAAAAsAAAAJCAYAAADkZNYtAAAACXBIWXMAAAsSAAALEgHS3X78AAAAMElEQVR42mP4jwUwMDD8xypOkWKQQhimnmJkhdg0MOBTiK6BdMX4FCJrYCBGIQwDAKEi/gL9vjYYAAAAAElFTkSuQmCC"
+			},
+		#end
+		#if ( $iscroix == 1 )
+			{
+			"block_name": "croix",
+"start_x": 190,
+"start_y": 180,
+"end_x": 198,
+"end_y": 197,
+			"content_type": "CONTENT_TYPE_TEXT",
+"font_type": "$police Bold 10",
+			"content_value": "X",
+			"content_color": "BLACK",
+			"background_transparent": true
+			},
+		#end
+		#else
+		{
+		"block_name": "groupe",
+"start_x": 150,
+"start_y": 180,
+"end_x": 182,
+"end_y": 196,
+		"content_type": "CONTENT_TYPE_IMAGE",
+		"content_value": "iVBORw0KGgoAAAANSUhEUgAAADwAAAAbAQMAAAAam36/AAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAAsSAAALEgHS3X78AAAAh0lEQVR42m3PPQ7CMAyG4deKRBZEOEAP0ZGNK/UGLTfLUXIEjx2qGDuVGIBMjyL/fMbOp/xBoyir0kGGD2AhKep4IEpzTPDBQnXcBlbbi9WZzWzK1gL9mk1nXtYvjrvj+ILX5BI1jmTRVZ9dLOZUMiNAI51Q0kZs3xHfKyOhJ/GEhn9G5p+73in7cHzkx4XfAAAAAElFTkSuQmCC",
+		"auto_scale": 1,
+		"content_reverse": 0,
+		"background_transparent": 0
+		},
+		#if ( $nbgroupe > 0 )
+			{
+			"block_name": "nb_groupe",
+"start_x": 185,
+"start_y": 180,
+"end_x": 198,
+"end_y": 197,
+			"content_type": "CONTENT_TYPE_TEXT",
+"font_type": "$police 9",
+			"content_title": "nbgroupe",
+			"content_alignment": "CENTER",
+			"content_vertical_alignment": "MIDDLE",
+			"content_color": "BLACK",
+			"background_transparent": true
+			},
+		#end
+	#end
+	#end
+
+	## PICTO NFC
+	#if ( $isnfc == 1 )
+		{
+		"block_name": "nfc",
+"start_x": 0,
+"start_y": 55,
+"end_x": 43,
+"end_y": 72,
+		"content_type": "CONTENT_TYPE_IMAGE",
+		"content_value": "iVBORw0KGgoAAAANSUhEUgAAACAAAAANCAYAAADISGwcAAAACXBIWXMAAAsSAAALEgHS3X78AAAAcklEQVR42sVVgQkAIAjb/08XFJGVqYMwQTAr3cQMJVOArtJVsmUDge5D03lmroctdY133zsSK3YYgB7zvBdiLmzsLKIAXMZOYhqAdYYpuQnAA0NVwGE+fHkAohV43oRMD7AAqGeolD93EFlz4Psk/PkXVMTMMRa4f1PNAAAAAElFTkSuQmCC",
+		"auto_scale": 0,
+		"content_reverse": 0,
+		"background_transparent": 0
+		},
+	#end
+	
+	## POINT ROUGE
+	#if ( $pointrouge == 1 )
+		{
+		"block_name": "point_rouge",
+"start_x": 63,
+"start_y": 56,
+"end_x": 73,
+"end_y": 68,
+		"content_type": "CONTENT_TYPE_BMP_FILE",
+		"content_value": "iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAACXBIWXMAAAsSAAALEgHS3X78AAAAI0lEQVR42mP4jwwYGBAYWRhDEh0TrwifAiimpiLqOZyIcAIA5orJN6+eExEAAAAASUVORK5CYII="
+		},
+	#end
+	
+	## CROIX ROUGE
+	#if ( $croixrouge == 1 )
+		{
+		"block_name": "croix_rouge",
+"start_x": 78,
+"start_y": 56,
+"end_x": 92,
+"end_y": 67,
+		"content_type": "CONTENT_TYPE_BMP_FILE",
+		"content_value": "iVBORw0KGgoAAAANSUhEUgAAAAcAAAAJCAYAAAD+WDajAAAACXBIWXMAAAsSAAALEgHS3X78AAAAL0lEQVR42mP4z8DwH4yRAVSMAUMSxgdLIgugsRnQVWNKoiuACRHWidNOvK7F408AcGqtUwpYyaMAAAAASUVORK5CYII="
+		},
+	#end
+	
+	## ETAT BATTERIE
+	#if ( $etatbatterie > 0 )
+		{
+		"block_name": "batterie",
+"start_x": 6,
+"start_y": 55,
+"end_x": 39,
+"end_y": 68,
+		"content_type": "CONTENT_TYPE_BMP_FILE",
+		#if ( $etatbatterie == 1 )
+			"content_value": "iVBORw0KGgoAAAANSUhEUgAAABkAAAAMAQMAAACtPIQIAAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAAsSAAALEgHS3X78AAAAJklEQVR42mP4//9/A0MDA3MDw/7/vxsYFtiDiR9YiN9QJWDFIG0AdtIdg8+GgtoAAAAASUVORK5CYII="
+			#else
+			"content_value": "iVBORw0KGgoAAAANSUhEUgAAABkAAAAMCAIAAAAYkIEcAAAACXBIWXMAAAsSAAALEgHS3X78AAAAKUlEQVR42mP4Tz3AACYYKELoZpHvmMFrFsyno2YRZxacSQOzqJZWqQQA2I/9H9tZ80wAAAAASUVORK5CYII="
+		#end
+		},
+	#end
+	{ "block_name": "foo","content_type": "CONTENT_TYPE_TEXT" }
+],
+## NFC
+"store_config": { 
+         "nfc": {
+		 "standard_content": "$util.nfcPublicAreaConvertor($url_nfc)" 
+		        } 
+		 }
+}
